@@ -30,16 +30,12 @@ with open("input7.txt", "r") as f:
             if "dir" in line:
                 if '/'.join(current_path) not in tree:
                     tree['/'.join(current_path)] = set()
-                    tree['/'.join(current_path)].add('/'.join(current_path) + '/' + line.split(" ")[1])
-                else:
-                    tree['/'.join(current_path)].add('/'.join(current_path) + '/' + line.split(" ")[1])
+                tree['/'.join(current_path)].add('/'.join(current_path) + '/' + line.split(" ")[1])
 
             else:
                 if '/'.join(current_path) not in values:
                     values['/'.join(current_path)] = 0
-                    values['/'.join(current_path)] += int(line.split(" ")[0])
-                else:
-                    values['/'.join(current_path)] += int(line.split(" ")[0])
+                values['/'.join(current_path)] += int(line.split(" ")[0])
 
     answers = {}
     dfs(tree, "/", values, answers)
